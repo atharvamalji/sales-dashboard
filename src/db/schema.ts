@@ -1,4 +1,4 @@
-import { integer, numeric, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
+import { date, integer, numeric, pgTable, serial, text } from 'drizzle-orm/pg-core';
 
 // Customers table
 export const customers = pgTable('customers', {
@@ -14,7 +14,7 @@ export const customers = pgTable('customers', {
 
 // Products table
 export const products = pgTable('products', {
-  productId: text('product_id').primaryKey(), // PK
+  productId: text('product_id').primaryKey(),
   productName: text('product_name').notNull(),
   category: text('category').notNull(),
   subCategory: text('sub_category').notNull(),
@@ -22,20 +22,13 @@ export const products = pgTable('products', {
 
 // Orders table (metadata)
 export const orders = pgTable('orders', {
-  orderId: text('order_id').primaryKey(), // PK
-  orderDate: timestamp('order_date').notNull(),
-  shipDate: timestamp('ship_date').notNull(),
+  orderId: text('order_id').primaryKey(),
+  orderDate: date('order_date').notNull(),
+  shipDate: date('ship_date').notNull(),
   shipMode: text('ship_mode').notNull(),
   customerId: text('customer_id')
     .notNull()
     .references(() => customers.customerId, { onDelete: 'cascade' }),
-  productId: text('product_id')
-    .notNull()
-    .references(() => products.productId, { onDelete: 'cascade' }),
-  sales: numeric('sales').notNull(),
-  quantity: integer('quantity').notNull(),
-  discount: numeric('discount').notNull(),
-  profit: numeric('profit').notNull(),
 });
 
 // Sales table (line items)
@@ -57,8 +50,8 @@ export const sales = pgTable('sales', {
 export const rawDataTable = pgTable('raw_data', {
   rowId: integer('row_id').notNull(),
   orderId: text('order_id').notNull(),
-  orderDate: timestamp('order_date').notNull(),
-  shipDate: timestamp('ship_date').notNull(),
+  orderDate: date('order_date').notNull(),
+  shipDate: date('ship_date').notNull(),
   shipMode: text('ship_mode').notNull(),
   customerId: text('customer_id').notNull(),
   customerName: text('customer_name').notNull(),
