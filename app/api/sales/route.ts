@@ -1,35 +1,36 @@
-// app/api/orders/route.ts
+// app/api/sales/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/src/db/index";
-import { orders } from "@/src/db/schema";
+import { sales } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 
 // Type inference from your Drizzle schema
-type Order = typeof orders.$inferSelect;
+type Sale = typeof sales.$inferSelect;
+type InsertSale = typeof sales.$inferInsert;
 
 /**
- * GET /api/orders?orderId=...
- * Fetch all orders or a single order by ID
+ * GET /api/sales?salesId=...
+ * Fetch all sales or a single sale by ID
  */
 export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
-    const orderId = url.searchParams.get("orderId");
+    const salesId = url.searchParams.get("salesId");
 
-    if (orderId) {
-      const order = await db
+    if (salesId) {
+      const sale = await db
         .select()
-        .from(orders)
-        .where(eq(orders.orderId, orderId));
+        .from(sales)
+        .where(eq(sales.salesId, parseInt(salesId)));
 
-      if (!order.length)
-        return NextResponse.json({ error: "Order not found" }, { status: 404 });
+      if (!sale.length)
+        return NextResponse.json({ error: "Sale not found" }, { status: 404 });
 
-      return NextResponse.json(order[0]);
+      return NextResponse.json(sale[0]);
     }
 
-    const allOrders = await db.select().from(orders);
-    return NextResponse.json(allOrders);
+    const allSales = await db.select().from(sales);
+    return NextResponse.json(allSales);
   } catch (err) {
     console.error(err);
     return NextResponse.json(
@@ -40,14 +41,14 @@ export async function GET(req: NextRequest) {
 }
 
 /**
- * POST /api/orders
- * Create a new order
+ * POST /api/sales
+ * Create a new sale
  */
 export async function POST(req: NextRequest) {
   try {
-    const data: Order = await req.json();
-    await db.insert(orders).values(data);
-    return NextResponse.json({ message: "Order created" }, { status: 201 });
+    const data: InsertSale = await req.json();
+    await db.insert(sales).values(data);
+    return NextResponse.json({ message: "Sale created" }, { status: 201 });
   } catch (err) {
     console.error(err);
     return NextResponse.json(
@@ -58,24 +59,27 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * PUT /api/orders?orderId=...
- * Update an existing order
+ * PUT /api/sales?salesId=...
+ * Update an existing sale
  */
 export async function PUT(req: NextRequest) {
   try {
     const url = new URL(req.url);
-    const orderId = url.searchParams.get("orderId");
+    const salesId = url.searchParams.get("salesId");
 
-    if (!orderId)
+    if (!salesId)
       return NextResponse.json(
-        { error: "orderId is required" },
+        { error: "salesId is required" },
         { status: 400 }
       );
 
-    const data: Partial<Order> = await req.json();
-    await db.update(orders).set(data).where(eq(orders.orderId, orderId));
+    const data: Partial<Sale> = await req.json();
+    await db
+      .update(sales)
+      .set(data)
+      .where(eq(sales.salesId, parseInt(salesId)));
 
-    return NextResponse.json({ message: "Order updated" });
+    return NextResponse.json({ message: "Sale updated" });
   } catch (err) {
     console.error(err);
     return NextResponse.json(
@@ -86,22 +90,22 @@ export async function PUT(req: NextRequest) {
 }
 
 /**
- * DELETE /api/orders?orderId=...
- * Delete an order by ID
+ * DELETE /api/sales?salesId=...
+ * Delete a sale by ID
  */
 export async function DELETE(req: NextRequest) {
   try {
     const url = new URL(req.url);
-    const orderId = url.searchParams.get("orderId");
+    const salesId = url.searchParams.get("salesId");
 
-    if (!orderId)
+    if (!salesId)
       return NextResponse.json(
-        { error: "orderId is required" },
+        { error: "salesId is required" },
         { status: 400 }
       );
 
-    await db.delete(orders).where(eq(orders.orderId, orderId));
-    return NextResponse.json({ message: "Order deleted" });
+    await db.delete(sales).where(eq(sales.salesId, parseInt(salesId)));
+    return NextResponse.json({ message: "Sale deleted" });
   } catch (err) {
     console.error(err);
     return NextResponse.json(
