@@ -169,8 +169,8 @@ const OrdersTable = () => {
               ["shipDate", "Ship Date"],
               ["shipMode", "Ship Mode"],
               ["customerId", "Customer ID"],
-            ].map((key) => (
-              <div key={key[0]} className="text-sm flex items-center gap-1">
+            ].map((key, index) => (
+              <div key={index} className="text-sm flex items-center gap-1">
                 <label htmlFor={key[0]} className="w-50 text-sm">
                   {key[1]}
                 </label>

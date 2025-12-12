@@ -205,8 +205,8 @@ const SalesTable = () => {
               ["quantity", "Quantity"],
               ["discount", "Discount"],
               ["profit", "Profit ($)"],
-            ].map(([key, label]) => (
-              <div className="text-sm flex items-center gap-1" key={key}>
+            ].map(([key, label, index]) => (
+              <div className="text-sm flex items-center gap-1" key={index}>
                 <label className="w-40 text-sm">{label}</label>
                 <input
                   value={(form as any)[key] || ""}

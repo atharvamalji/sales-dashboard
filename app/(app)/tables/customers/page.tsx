@@ -178,8 +178,8 @@ const CustomersTable = () => {
               ["state", "State"],
               ["postalCode", "Postal Code"],
               ["region", "Region"],
-            ].map((key) => (
-              <div className="text-sm flex items-center gap-1">
+            ].map((key, index) => (
+              <div className="text-sm flex items-center gap-1" key={index}>
                 <label htmlFor={key[0]} className="w-50 text-sm">
                   {key[1]}
                 </label>

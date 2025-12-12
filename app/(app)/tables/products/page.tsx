@@ -172,8 +172,8 @@ const ProductsTable = () => {
               ["productName", "Product Name"],
               ["category", "Category"],
               ["subCategory", "Sub Category"],
-            ].map((key) => (
-              <div className="text-sm flex items-center gap-1" key={key[0]}>
+            ].map((key, index) => (
+              <div className="text-sm flex items-center gap-1" key={index}>
                 <label htmlFor={key[0]} className="w-40 text-sm">
                   {key[1]}
                 </label>
