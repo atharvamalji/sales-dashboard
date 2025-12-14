@@ -65,8 +65,8 @@ const OrderQuantityInfocard = () => {
     <div className="bg-white dark:bg-neutral p-4 border border-stone-200 shadow w-full h-full flex flex-col">
       <h2 className="font-bold text-gray-800">Order Quantity per Product</h2>
       <p className="text-xs">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-        architecto ex eligendi, officiis iusto iste quas commodi, aut officia
+        Displays the total quantity ordered for each product based on Superstore
+        order data, highlighting high-demand and low-demand products.
       </p>
       {/* <p className="text-2xl font-bold mb-4">${totalSales.toLocaleString()}</p> */}
       <div className="h-80 mt-8">

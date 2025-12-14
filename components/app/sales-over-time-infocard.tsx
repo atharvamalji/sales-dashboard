@@ -78,8 +78,8 @@ const SalesOverTimeInfoCard = () => {
     <div className="bg-white dark:bg-neutral p-4 border border-stone-200 shadow w-full h-full flex flex-col">
       <h2 className="font-bold text-gray-800">Sales Over Time</h2>
       <p className="text-xs">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-        architecto ex eligendi, officiis iusto iste quas commodi, aut officia
+        Shows total sales trends over time based on Superstore order data,
+        helping identify growth patterns, seasonality, and performance changes.
       </p>
       {/* <p className="text-2xl font-bold mb-4">${totalSales.toLocaleString()}</p> */}
       <div className="h-80 mt-8">
