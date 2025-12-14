@@ -4,7 +4,7 @@ import "../globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Salescast.io",
+  title: "SuperStore Insights",
   description: "Sales management and visualization platform",
 };
 
