@@ -19,7 +19,11 @@ export default function RootLayout({
         <main className="min-h-screen bg-linear-to-b from-blue-50 to-white">
           <header className="sticky top-0 w-full bg-stone-50 border-b border-stone-200 shadow-sm">
             <div className="max-w-6xl mx-auto h-12 px-4 flex items-center justify-between">
-              <div>salescast.io</div>
+              <div>
+                <Link href={"/dashboard"}>
+                  <span className="font-bold text-blue-500">SuperStore</span> Insights
+                </Link>
+              </div>
               <div>
                 <nav>
                   <ul className="flex gap-8 text-sm">

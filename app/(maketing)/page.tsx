@@ -1,32 +1,21 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="flex flex-col items-center">
       <header className="fixed top-0 w-full flex justify-center text-blue-50">
         <div className="w-full max-w-6xl px-6 py-2 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="text-lg font-bold ">
-            Salescast.io
-          </a>
+          <div>
+            <Link href={"/dashboard"}>
+              <span className="font-bold text-black">SuperStore</span>{" "}
+              Insights
+            </Link>
+          </div>
 
           {/* Nav Links */}
           <nav>
             <ul className="flex items-center gap-8 text-sm font-medium">
-              <li>
-                <a
-                  href="#overview"
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  Overview
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#features"
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  Features
-                </a>
-              </li>
               <li>
                 <a
                   href="/dashboard"
@@ -105,76 +94,6 @@ export default function Page() {
             >
               <h3 className="text-xl font-semibold mb-2">{title}</h3>
               <p className="text-muted-foreground">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="w-full bg-muted/50 py-24 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-12">Loved by Sales Teams</h2>
-          <div className="grid gap-10 sm:grid-cols-3">
-            {[
-              {
-                name: "Alex Morgan",
-                text: "Salescast.io completely changed how we track deals — it’s intuitive and powerful.",
-              },
-              {
-                name: "Taylor Kim",
-                text: "The forecasting features are incredible. We can plan our targets months ahead.",
-              },
-              {
-                name: "Jordan Lee",
-                text: "Finally, a dashboard that doesn’t feel like a spreadsheet.",
-              },
-            ].map(({ name, text }) => (
-              <div
-                key={name}
-                className="rounded-xl border bg-background p-6 shadow-sm"
-              >
-                <p className="italic text-muted-foreground mb-3">“{text}”</p>
-                <p className="font-semibold">{name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="w-full max-w-6xl px-6 py-24 text-center">
-        <h2 className="text-3xl font-semibold mb-12">Simple Pricing</h2>
-        <div className="grid gap-8 sm:grid-cols-3">
-          {[
-            {
-              name: "Starter",
-              price: "$0",
-              desc: "For individuals exploring sales analytics.",
-            },
-            {
-              name: "Pro",
-              price: "$29/mo",
-              desc: "For small teams that need collaboration tools.",
-            },
-            {
-              name: "Enterprise",
-              price: "Custom",
-              desc: "Advanced analytics and integrations.",
-            },
-          ].map(({ name, price, desc }) => (
-            <div
-              key={name}
-              className="rounded-2xl border p-8 flex flex-col items-center hover:shadow-sm transition"
-            >
-              <h3 className="text-xl font-semibold">{name}</h3>
-              <p className="mt-4 text-3xl font-bold">{price}</p>
-              <p className="mt-2 text-muted-foreground">{desc}</p>
-              <a
-                href="/app/dashboard"
-                className="mt-6 w-full rounded-xl bg-primary px-6 py-3 text-white font-medium hover:bg-primary/90"
-              >
-                Get Started
-              </a>
             </div>
           ))}
         </div>
